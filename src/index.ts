@@ -1,1 +1,3 @@
-console.log("Hello World");
+import Fibonacci from "./recursion/index";
+
+Fibonacci();
