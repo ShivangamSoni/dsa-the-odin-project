@@ -117,7 +117,7 @@ export class LinkedList {
 
         // Since we are appending on index 0 Prev can't be null
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         prev.next = newNode;
         this.#size++;
     }
@@ -174,6 +174,48 @@ export class LinkedList {
         this.#tail = prev;
         this.#size--;
 
+        return cur;
+    }
+
+    /**
+     * Remove & Return Node at Index
+     *
+     * @param {number} index
+     * @return @return {(Node|null)} Node or Null if List is Empty or Index invalid
+     * @memberof LinkedList
+     */
+    removeAt(index: number) {
+        if (index >= this.size || index < 0) {
+            return null;
+        }
+
+        if (index === this.size - 1) {
+            return this.pop();
+        }
+
+        if (index === 0) {
+            // Since previous condition handles List with 1 Node, no need to check for null head
+            const temp = this.#head as Node;
+            this.#head = temp.next;
+            this.#size--;
+            return temp;
+        }
+
+        let count = 0;
+        let cur = this.#head as Node;
+        let prev: Node | null = null;
+
+        while (count !== index && cur.next !== null) {
+            count++;
+            prev = cur;
+            cur = prev.next as Node;
+        }
+
+        // Since we are popping on index size-1 & handling index 0 separately, Prev can't be null
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        prev.next = cur.next;
+        this.#size--;
         return cur;
     }
 
