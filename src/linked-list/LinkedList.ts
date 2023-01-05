@@ -82,6 +82,31 @@ export class LinkedList {
     }
 
     /**
+     * Return Node at Specified Index
+     *
+     * @param {number} index
+     * @returns {(Node|null)} Node or null if invalid index
+     * @memberof LinkedList
+     */
+    at(index: number): Node | null {
+        if (index >= this.size) {
+            return null;
+        }
+
+        if (index === this.size - 1) {
+            return this.tail;
+        }
+
+        let count = 0;
+        let temp = this.#head;
+        while (count !== index && temp !== null) {
+            count++;
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    /**
      * Print the List in JSON Format
      *
      * @memberof LinkedList

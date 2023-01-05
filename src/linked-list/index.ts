@@ -14,4 +14,9 @@ export default function main() {
 
     console.log(myList.size);
     console.log({ head: myList.head?.value, tail: myList.tail?.value });
+
+    console.log(myList.at(0)?.value);
+    console.log(myList.at(2)?.value);
+    console.log(myList.at(myList.size - 1)?.value);
+    console.log(myList.at(78));
 }
