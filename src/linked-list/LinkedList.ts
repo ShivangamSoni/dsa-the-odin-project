@@ -157,6 +157,28 @@ export class LinkedList {
     }
 
     /**
+     * Return Index of the Node
+     *
+     * @param {number} value
+     * @return {(number|null)} number If node with value exists else null
+     * @memberof LinkedList
+     */
+    find(value: number) {
+        let index = 0;
+        let temp = this.#head;
+
+        while (temp !== null) {
+            if (temp.value === value) {
+                return index;
+            }
+            temp = temp.next;
+            index++;
+        }
+
+        return null;
+    }
+
+    /**
      * Print the List in JSON Format
      *
      * @memberof LinkedList

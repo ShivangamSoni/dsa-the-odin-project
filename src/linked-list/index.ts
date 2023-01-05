@@ -32,4 +32,11 @@ export default function main() {
         "80": myList.contains(80),
         "0": myList.contains(0),
     });
+
+    console.log({
+        "52": myList.find(52),
+        "-90": myList.find(-90),
+        "80": myList.find(80),
+        "0": myList.find(0),
+    });
 }
