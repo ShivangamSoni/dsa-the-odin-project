@@ -19,4 +19,10 @@ export default function main() {
     console.log(myList.at(2)?.value);
     console.log(myList.at(myList.size - 1)?.value);
     console.log(myList.at(78));
+
+    console.log({ size: myList.size });
+    console.log(myList.pop()?.value);
+    console.log({ size: myList.size });
+    console.log(myList.pop()?.value);
+    console.log({ size: myList.size });
 }

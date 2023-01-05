@@ -107,6 +107,36 @@ export class LinkedList {
     }
 
     /**
+     * Remove & Return Last Node of the List
+     *
+     * @return {(Node|null)} Node or Null if List Empty
+     * @memberof LinkedList
+     */
+    pop() {
+        if (this.#head === null) return null;
+
+        let cur = this.#head;
+        let prev: Node | null = null;
+
+        while (cur.next !== null) {
+            prev = cur;
+            cur = prev.next as Node;
+        }
+
+        // prev will be null if head is the only Node
+        if (prev === null) {
+            this.#head = null;
+        } else {
+            prev.next = null;
+        }
+
+        this.#tail = prev;
+        this.#size--;
+
+        return cur;
+    }
+
+    /**
      * Print the List in JSON Format
      *
      * @memberof LinkedList
