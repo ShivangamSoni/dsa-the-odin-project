@@ -39,4 +39,6 @@ export default function main() {
         "80": myList.find(80),
         "0": myList.find(0),
     });
+
+    console.log(myList.toString());
 }

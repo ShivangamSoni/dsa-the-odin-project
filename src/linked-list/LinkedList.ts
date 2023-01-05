@@ -179,6 +179,25 @@ export class LinkedList {
     }
 
     /**
+     * Return String representation of the List
+     *
+     * @return {string}
+     * @memberof LinkedList
+     */
+    toString() {
+        let res = "";
+        let temp = this.#head;
+
+        while (temp !== null) {
+            res += `( ${temp.value} ) -> `;
+            temp = temp.next;
+        }
+
+        res += temp;
+        return res;
+    }
+
+    /**
      * Print the List in JSON Format
      *
      * @memberof LinkedList
