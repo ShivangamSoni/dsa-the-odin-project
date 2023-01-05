@@ -40,5 +40,14 @@ export default function main() {
         "0": myList.find(0),
     });
 
+    myList.append(20);
+    myList.prepend(2033);
+    console.log(myList.toString());
+
+    myList.insertAt(19, 0);
+    console.log(myList.toString());
+    myList.insertAt(4, 2);
+    console.log(myList.toString());
+    myList.insertAt(-7, myList.size - 1);
     console.log(myList.toString());
 }

@@ -82,6 +82,47 @@ export class LinkedList {
     }
 
     /**
+     * Insert At the Specified Index
+     *
+     * @param {number} value
+     * @param {number} index
+     * @memberof LinkedList
+     */
+    insertAt(value: number, index: number) {
+        if (index >= this.size || index < 0) {
+            return;
+        }
+
+        if (index === 0) {
+            this.prepend(value);
+            return;
+        }
+
+        let count = 0;
+        let cur = this.#head;
+        let prev: Node | null = null;
+
+        while (count !== index && cur !== null) {
+            prev = cur;
+            cur = prev.next;
+            count++;
+        }
+
+        if (cur === null) {
+            return;
+        }
+
+        const newNode = new Node(value);
+        newNode.next = cur;
+
+        // Since we are appending on index 0 Prev can't be null
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        prev.next = newNode;
+        this.#size++;
+    }
+
+    /**
      * Return Node at Specified Index
      *
      * @param {number} index
@@ -89,7 +130,7 @@ export class LinkedList {
      * @memberof LinkedList
      */
     at(index: number): Node | null {
-        if (index >= this.size) {
+        if (index >= this.size || index < 0) {
             return null;
         }
 
