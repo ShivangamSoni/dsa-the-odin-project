@@ -137,6 +137,26 @@ export class LinkedList {
     }
 
     /**
+     * Check if Value Exists in List
+     *
+     * @param {number} value
+     * @return {boolean}
+     * @memberof LinkedList
+     */
+    contains(value: number) {
+        let temp = this.#head;
+
+        while (temp !== null) {
+            if (temp.value === value) {
+                return true;
+            }
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
+    /**
      * Print the List in JSON Format
      *
      * @memberof LinkedList
