@@ -11,4 +11,7 @@ export default function main() {
     myList.prepend(52);
     myList.prepend(-90);
     myList.print();
+
+    console.log(myList.size);
+    console.log({ head: myList.head?.value, tail: myList.tail?.value });
 }

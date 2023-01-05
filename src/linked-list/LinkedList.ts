@@ -2,9 +2,43 @@ import { Node } from "./Node";
 
 export class LinkedList {
     #head: Node | null;
+    #tail: Node | null;
+    #size: number;
 
     constructor() {
         this.#head = null;
+        this.#tail = null;
+        this.#size = 0;
+    }
+
+    /**
+     * First Node in List
+     *
+     * @readonly
+     * @memberof LinkedList
+     */
+    get head() {
+        return this.#head;
+    }
+
+    /**
+     * Last Node in List
+     *
+     * @readonly
+     * @memberof LinkedList
+     */
+    get tail() {
+        return this.#tail;
+    }
+
+    /**
+     * Size of the List
+     *
+     * @readonly
+     * @memberof LinkedList
+     */
+    get size() {
+        return this.#size;
     }
 
     /**
@@ -17,15 +51,14 @@ export class LinkedList {
         const newNode = new Node(value);
         if (this.#head === null) {
             this.#head = newNode;
-            return;
         }
 
-        let temp = this.#head;
-        while (temp.next !== null) {
-            temp = temp.next;
+        if (this.#tail !== null) {
+            this.#tail.next = newNode;
         }
 
-        temp.next = newNode;
+        this.#tail = newNode;
+        this.#size++;
     }
 
     /**
@@ -36,10 +69,16 @@ export class LinkedList {
      */
     prepend(value: number) {
         const newNode = new Node(value);
+        if (this.#tail === null) {
+            this.#tail = newNode;
+        }
+
         if (this.#head !== null) {
             newNode.next = this.#head;
         }
+
         this.#head = newNode;
+        this.#size++;
     }
 
     /**
