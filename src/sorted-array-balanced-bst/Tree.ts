@@ -48,6 +48,37 @@ export class Tree {
     }
 
     /**
+     * Insert New Node to Tree
+     *
+     * @param {number} value
+     * @memberof Tree
+     */
+    insert(value: number) {
+        this.#root = this.#insertNode(this.#root, value);
+    }
+
+    /**
+     * Private Helper Recursive Method for Insertion
+     *
+     * @param {(Node | null)} root
+     * @param {number} value
+     * @returns {Node}
+     */
+    #insertNode(root: Node | null, value: number) {
+        if (root === null) {
+            return new Node(value);
+        }
+
+        if (root.value > value) {
+            root.left = this.#insertNode(root.left, value);
+        } else if (root.value < value) {
+            root.right = this.#insertNode(root.right, value);
+        }
+
+        return root;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
