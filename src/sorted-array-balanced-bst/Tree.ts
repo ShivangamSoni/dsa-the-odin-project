@@ -316,6 +316,35 @@ export class Tree {
     }
 
     /**
+     * Calculate Height of Tree
+     *
+     * @param {(Node | null)} [root=this.#root]
+     * @return {number} Height/Total Levels of Tree
+     * @memberof Tree
+     */
+    height(root: Node | null = this.#root): number {
+        return this.#heightHelper(root) - 1;
+    }
+
+    /**
+     * Private Recursive Helper Method for Height
+     *
+     *     [Note: not to be used directly use `this.height()` instead]
+     *
+     * @param {(Node | null)} root
+     * @return {number} Height/Total Levels of Tree Starting with 1
+     * @memberof Tree
+     */
+    #heightHelper(root: Node | null): number {
+        if (root === null) return 0;
+
+        const leftHeight = this.#heightHelper(root.left);
+        const rightHeight = this.#heightHelper(root.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
