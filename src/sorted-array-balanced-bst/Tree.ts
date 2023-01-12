@@ -152,6 +152,41 @@ export class Tree {
     }
 
     /**
+     * Perform LevelOrder Traversal of Tree
+     *
+     * @param {(value: number) => void} [action]
+     * @return {(number[] | undefined)} if no action function is provided returns array of values
+     * @memberof Tree
+     */
+    levelOrder(action?: (value: number) => void) {
+        if (typeof action !== "function") {
+            action = (item) => arr.push(item);
+        }
+        const arr: number[] = [];
+        const queue: Array<Node | null> = [];
+
+        queue.push(this.#root);
+
+        let temp: Node | null = null;
+        do {
+            temp = queue.shift() ?? null;
+            if (temp !== null) {
+                action(temp.value);
+                if (temp.left !== null) {
+                    queue.push(temp.left);
+                }
+                if (temp.right !== null) {
+                    queue.push(temp.right);
+                }
+            }
+        } while (temp !== null);
+
+        if (arr.length !== 0) {
+            return arr;
+        }
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree

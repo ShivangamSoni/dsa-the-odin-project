@@ -35,4 +35,9 @@ export default function main() {
         155: myTree.find(155),
         "-200": myTree.find(-200),
     });
+
+    myTree.print();
+    console.log(myTree.levelOrder());
+
+    myTree.levelOrder((item) => console.log(item));
 }
