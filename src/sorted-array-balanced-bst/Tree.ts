@@ -236,6 +236,46 @@ export class Tree {
     }
 
     /**
+     * Perform PreOrder Traversal of Tree
+     *
+     * @param {(item: number) => void} [action]
+     * @return {(number[] | undefined)} if no action function is provided returns array of values
+     * @memberof Tree
+     */
+    preOrder(action?: (item: number) => void) {
+        const arr = this.#preOrderToArray(action);
+        if (typeof action === "function") {
+            return;
+        }
+        return arr;
+    }
+
+    /**
+     * Recursive Helper Function for PreOrder
+     *
+     * @param {(item: number) => void} [action=(item) => arr.push(item)]
+     * @param {(Node | null)} [root=this.#root]
+     * @param {number[]} [arr=[]]
+     * @return {number[]}
+     * @memberof Tree
+     */
+    #preOrderToArray(
+        action: (item: number) => void = (item) => arr.push(item),
+        root: Node | null = this.#root,
+        arr: number[] = [],
+    ) {
+        if (root === null) {
+            return arr;
+        }
+
+        action(root.value);
+        arr = this.#preOrderToArray(action, root.left, arr);
+        arr = this.#preOrderToArray(action, root.right, arr);
+
+        return arr;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
