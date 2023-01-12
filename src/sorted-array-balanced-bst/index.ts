@@ -54,4 +54,8 @@ export default function main() {
 
     myTree.print();
     console.log({ height: myTree.height() });
+
+    myTree.print();
+    const one = myTree.find(-4);
+    console.log({ depth: myTree.depth(one), height: myTree.height(one) });
 }

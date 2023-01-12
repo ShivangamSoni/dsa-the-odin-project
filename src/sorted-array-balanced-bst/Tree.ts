@@ -345,6 +345,41 @@ export class Tree {
     }
 
     /**
+     * Calculate Depth of a Node from Trees Root
+     *
+     * @param {(Node | null)} node
+     * @return {number} Node's Depth
+     * @memberof Tree
+     */
+    depth(node: Node | null): number {
+        return this.#depthHelper(node) - 1;
+    }
+
+    /**
+     * Private Recursive Helper Method for Depth
+     *
+     *     [Note: not to be used directly use `this.depth()` instead]
+     *
+     * @param {(Node | null)} node
+     * @param {(Node | null)} [root=this.#root]
+     * @return {number} Node's Depth Starting with 1
+     * @memberof Tree
+     */
+    #depthHelper(node: Node | null, root: Node | null = this.#root): number {
+        if (root === null || node === null) return 0;
+
+        if (root.value === node.value) {
+            return 1;
+        }
+
+        if (root.value > node.value) {
+            return this.#depthHelper(node, root.left) + 1;
+        } else {
+            return this.#depthHelper(node, root.right) + 1;
+        }
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
