@@ -159,31 +159,39 @@ export class Tree {
      * @memberof Tree
      */
     levelOrder(action?: (value: number) => void) {
-        if (typeof action !== "function") {
-            action = (item) => arr.push(item);
+        const arr = this.#levelOrderToArray(action);
+        if (typeof action === "function") {
+            return;
         }
-        const arr: number[] = [];
-        const queue: Array<Node | null> = [];
+        return arr;
+    }
 
-        queue.push(this.#root);
-
-        let temp: Node | null = null;
-        do {
-            temp = queue.shift() ?? null;
-            if (temp !== null) {
-                action(temp.value);
-                if (temp.left !== null) {
-                    queue.push(temp.left);
-                }
-                if (temp.right !== null) {
-                    queue.push(temp.right);
-                }
-            }
-        } while (temp !== null);
-
-        if (arr.length !== 0) {
+    /**
+     * Recursive Helper Function for LevelOrder
+     *
+     * @param {(Array<Node | null>)} [queue=[this.#root]]
+     * @param {number[]} [arr=[]]
+     * @return {number[]}
+     * @memberof Tree
+     */
+    #levelOrderToArray(
+        action: (item: number) => void = (item) => arr.push(item),
+        queue: Array<Node | null> = [this.#root],
+        arr: number[] = [],
+    ): number[] {
+        if (queue.length === 0) {
             return arr;
         }
+
+        const root = queue.shift() ?? null;
+        if (root === null) {
+            return arr;
+        }
+
+        action(root.value);
+        queue.push(root.left);
+        queue.push(root.right);
+        return this.#levelOrderToArray(action, queue, arr);
     }
 
     /**
