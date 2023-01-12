@@ -11,4 +11,20 @@ export default function main() {
     myTree.insert(58);
     myTree.insert(5);
     myTree.print();
+
+    console.log("Remove 54");
+    myTree.delete(54);
+    myTree.print();
+
+    console.log("Remove 18");
+    myTree.delete(18);
+    myTree.print();
+
+    console.log("Remove 87");
+    myTree.delete(87);
+    myTree.print();
+
+    console.log("Remove 23");
+    myTree.delete(23);
+    myTree.print();
 }

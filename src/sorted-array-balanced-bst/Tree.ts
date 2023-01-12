@@ -79,6 +79,53 @@ export class Tree {
     }
 
     /**
+     * Delete the Node with value
+     *
+     * @param {number} value
+     * @memberof Tree
+     */
+    delete(value: number) {
+        this.#root = this.#deleteNode(this.#root, value);
+    }
+
+    /**
+     * Private Helper Recursive Method for Deletion
+     *
+     * @param {(Node | null)} root Starting node of Tree
+     * @param {number} value Value of the Node
+     * @returns Root Node for the Tree
+     */
+    #deleteNode(root: Node | null, value: number) {
+        if (root === null) return root;
+
+        if (root.value > value) {
+            root.left = this.#deleteNode(root.left, value);
+        } else if (root.value < value) {
+            root.right = this.#deleteNode(root.right, value);
+        } else {
+            if (root.right === null) {
+                root = root.left;
+            } else if (root.left === null) {
+                root = root.right;
+            } else {
+                // Case: Both Children have Nodes
+                // Find Max in Left
+                let curr = root.left;
+                while (curr.right !== null) {
+                    curr = curr.right;
+                }
+
+                // Copy Value
+                root.value = curr.value;
+                // Remove Duplicate from left Sub-Tree
+                root.left = this.#deleteNode(root.left, root.value);
+            }
+        }
+
+        return root;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
