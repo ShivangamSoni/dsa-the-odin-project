@@ -126,6 +126,32 @@ export class Tree {
     }
 
     /**
+     * Return the Node with value
+     *
+     * @param {number} value
+     * @return {(Node | null)} Node if found else null
+     * @memberof Tree
+     */
+    find(value: number) {
+        if (this.#root === null) {
+            return null;
+        }
+
+        let temp: Node | null = this.#root;
+        while (temp !== null) {
+            if (temp.value > value) {
+                temp = temp.left;
+            } else if (temp.value < value) {
+                temp = temp.right;
+            } else {
+                return temp;
+            }
+        }
+
+        return temp;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree

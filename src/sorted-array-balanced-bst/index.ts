@@ -27,4 +27,12 @@ export default function main() {
     console.log("Remove 23");
     myTree.delete(23);
     myTree.print();
+
+    console.log({
+        5: myTree.find(5),
+        58: myTree.find(58),
+        1: myTree.find(1),
+        155: myTree.find(155),
+        "-200": myTree.find(-200),
+    });
 }
