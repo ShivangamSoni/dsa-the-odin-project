@@ -276,6 +276,46 @@ export class Tree {
     }
 
     /**
+     * Perform PostOrder Traversal of Tree
+     *
+     * @param {(item: number) => void} [action]
+     * @return {(number[] | undefined)} if no action function is provided returns array of values
+     * @memberof Tree
+     */
+    postOrder(action?: (item: number) => void) {
+        const arr = this.#postOrderToArray(action);
+        if (typeof action === "function") {
+            return;
+        }
+        return arr;
+    }
+
+    /**
+     * Recursive Helper Function for PostOrder
+     *
+     * @param {(item: number) => void} [action=(item) => arr.push(item)]
+     * @param {(Node | null)} [root=this.#root]
+     * @param {number[]} [arr=[]]
+     * @return {number[]}
+     * @memberof Tree
+     */
+    #postOrderToArray(
+        action: (item: number) => void = (item) => arr.push(item),
+        root: Node | null = this.#root,
+        arr: number[] = [],
+    ) {
+        if (root === null) {
+            return arr;
+        }
+
+        arr = this.#postOrderToArray(action, root.left, arr);
+        arr = this.#postOrderToArray(action, root.right, arr);
+        action(root.value);
+
+        return arr;
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree

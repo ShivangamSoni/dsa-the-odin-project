@@ -47,4 +47,8 @@ export default function main() {
     myTree.print();
     console.log(myTree.preOrder());
     myTree.preOrder((item) => console.log(item));
+
+    myTree.print();
+    console.log(myTree.postOrder());
+    myTree.postOrder((item) => console.log(item));
 }
