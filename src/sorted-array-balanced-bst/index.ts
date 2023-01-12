@@ -38,6 +38,9 @@ export default function main() {
 
     myTree.print();
     console.log(myTree.levelOrder());
-
     myTree.levelOrder((item) => console.log(item));
+
+    myTree.print();
+    console.log(myTree.inOrder());
+    myTree.inOrder((item) => console.log(item));
 }

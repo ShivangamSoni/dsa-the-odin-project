@@ -169,6 +169,7 @@ export class Tree {
     /**
      * Recursive Helper Function for LevelOrder
      *
+     * @param {(item: number) => void} [action=(item) => arr.push(item)]
      * @param {(Array<Node | null>)} [queue=[this.#root]]
      * @param {number[]} [arr=[]]
      * @return {number[]}
@@ -192,6 +193,46 @@ export class Tree {
         queue.push(root.left);
         queue.push(root.right);
         return this.#levelOrderToArray(action, queue, arr);
+    }
+
+    /**
+     * Perform InOrder Traversal of Tree
+     *
+     * @param {(item: number) => void} [action]
+     * @return {(number[] | undefined)} if no action function is provided returns array of values
+     * @memberof Tree
+     */
+    inOrder(action?: (item: number) => void) {
+        const arr = this.#inOrderToArray(action);
+        if (typeof action === "function") {
+            return;
+        }
+        return arr;
+    }
+
+    /**
+     * Recursive Helper Function for InOrder
+     *
+     * @param {(item: number) => void} [action=(item) => arr.push(item)]
+     * @param {(Node | null)} [root=this.#root]
+     * @param {number[]} [arr=[]]
+     * @return {number[]}
+     * @memberof Tree
+     */
+    #inOrderToArray(
+        action: (item: number) => void = (item) => arr.push(item),
+        root: Node | null = this.#root,
+        arr: number[] = [],
+    ) {
+        if (root === null) {
+            return arr;
+        }
+
+        arr = this.#inOrderToArray(action, root.left, arr);
+        action(root.value);
+        arr = this.#inOrderToArray(action, root.right, arr);
+
+        return arr;
     }
 
     /**
