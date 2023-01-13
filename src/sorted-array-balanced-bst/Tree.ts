@@ -190,8 +190,12 @@ export class Tree {
         }
 
         action(root.value);
-        queue.push(root.left);
-        queue.push(root.right);
+        if (root.left !== null) {
+            queue.push(root.left);
+        }
+        if (root.right !== null) {
+            queue.push(root.right);
+        }
         return this.#levelOrderToArray(action, queue, arr);
     }
 
