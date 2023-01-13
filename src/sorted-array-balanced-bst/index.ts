@@ -3,72 +3,50 @@ import { Tree } from "./Tree";
 export default function main() {
     console.log("\nBalanced Binary Search Tree using Sorted Array:");
 
-    const myTree = new Tree([1, -10, 23, -4, 1, 152, 23, 60, -71, 87, -10]);
+    // Create a Tree with Random Numbers
+    const myTree = new Tree(generateRandomArray(10));
     myTree.print();
+    // Check Balance
+    console.log({ balanced: myTree.isBalanced() });
 
-    myTree.insert(54);
-    myTree.insert(18);
-    myTree.insert(58);
-    myTree.insert(5);
-    myTree.print();
-
-    console.log("Remove 54");
-    myTree.delete(54);
-    myTree.print();
-
-    console.log("Remove 18");
-    myTree.delete(18);
-    myTree.print();
-
-    console.log("Remove 87");
-    myTree.delete(87);
-    myTree.print();
-
-    console.log("Remove 23");
-    myTree.delete(23);
-    myTree.print();
-
+    // Traversals
     console.log({
-        5: myTree.find(5),
-        58: myTree.find(58),
-        1: myTree.find(1),
-        155: myTree.find(155),
-        "-200": myTree.find(-200),
+        level: myTree.levelOrder(),
+        pre: myTree.preOrder(),
+        in: myTree.inOrder(),
+        post: myTree.postOrder(),
     });
 
+    // Insert Multiple Nodes
+    const newValues = generateRandomArray(150);
+    newValues.forEach((v) => myTree.insert(v));
     myTree.print();
-    console.log(myTree.levelOrder());
-    myTree.levelOrder((item) => console.log(item));
+    // Check Balance
+    console.log({ balanced: myTree.isBalanced() });
 
-    myTree.print();
-    console.log(myTree.inOrder());
-    myTree.inOrder((item) => console.log(item));
-
-    myTree.print();
-    console.log(myTree.preOrder());
-    myTree.preOrder((item) => console.log(item));
-
-    myTree.print();
-    console.log(myTree.postOrder());
-    myTree.postOrder((item) => console.log(item));
-
-    myTree.print();
-    console.log({ height: myTree.height() });
-
-    myTree.print();
-    const one = myTree.find(-4);
-    console.log({ depth: myTree.depth(one), height: myTree.height(one) });
-
-    myTree.print();
-    console.log(myTree.isBalanced());
-    myTree.insert(0);
-    myTree.insert(-1);
-    myTree.insert(-2);
-    myTree.insert(-3);
-    myTree.print();
-    console.log(myTree.isBalanced());
-
+    // Rebalance
     myTree.rebalance();
     myTree.print();
-    console.log(myTree.isBalanced());
+    // Check Balance
+    console.log({ balanced: myTree.isBalanced() });
+
+    // Traversals
+    console.log({
+        level: myTree.levelOrder(),
+        pre: myTree.preOrder(),
+        in: myTree.inOrder(),
+        post: myTree.postOrder(),
+    });
+}
+
+function generateRandomArray(size = 50) {
+    const res: number[] = [];
+    for (let i = 0; i < size; i++) {
+        res.push(getRandomNumber());
+    }
+    return res;
+}
+
+function getRandomNumber(min = 0, max = 10000) {
+    return Math.floor(Math.random() * (max - min) + min);
 }
