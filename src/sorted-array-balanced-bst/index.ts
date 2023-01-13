@@ -58,4 +58,13 @@ export default function main() {
     myTree.print();
     const one = myTree.find(-4);
     console.log({ depth: myTree.depth(one), height: myTree.height(one) });
+
+    myTree.print();
+    console.log(myTree.isBalanced());
+    myTree.insert(0);
+    myTree.insert(-1);
+    myTree.insert(-2);
+    myTree.insert(-3);
+    myTree.print();
+    console.log(myTree.isBalanced());
 }

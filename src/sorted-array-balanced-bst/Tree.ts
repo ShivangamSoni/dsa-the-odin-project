@@ -380,6 +380,41 @@ export class Tree {
     }
 
     /**
+     * Check if Tree is Balanced
+     *
+     * @return {boolean}
+     * @memberof Tree
+     */
+    isBalanced() {
+        return this.#checkBalance();
+    }
+
+    /**
+     * Private Recursive Helper Method to Check Tree Balance
+     *
+     * @param {(Node | null)} [root=this.#root]
+     * @return {boolean}
+     * @memberof Tree
+     */
+    #checkBalance(root: Node | null = this.#root): boolean {
+        if (root === null) {
+            return true;
+        }
+
+        const leftHeight = this.height(root.left);
+        const rightHeight = this.height(root.right);
+
+        const leftBalanced = this.#checkBalance(root.left);
+        const rightBalanced = this.#checkBalance(root.right);
+
+        return (
+            Math.abs(leftHeight - rightHeight) <= 1 &&
+            leftBalanced &&
+            rightBalanced
+        );
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
