@@ -67,4 +67,8 @@ export default function main() {
     myTree.insert(-3);
     myTree.print();
     console.log(myTree.isBalanced());
+
+    myTree.rebalance();
+    myTree.print();
+    console.log(myTree.isBalanced());
 }

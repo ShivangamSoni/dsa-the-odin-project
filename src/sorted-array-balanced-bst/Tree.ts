@@ -415,6 +415,16 @@ export class Tree {
     }
 
     /**
+     * Rebalance the Tree
+     *
+     * @memberof Tree
+     */
+    rebalance() {
+        const arr = this.preOrder() as number[];
+        this.#root = this.#buildTree(arr);
+    }
+
+    /**
      * Prints the Visual Representation of Tree
      *
      * @memberof Tree
